@@ -31,53 +31,52 @@ module Creek
       def self.call(value, type, style, options = {})
         return nil if value.nil? || value.empty?
         # Always return string
-        value
         # Sometimes the type is dictated by the style alone
-        # if type.nil? || (type == 'n' && DATE_TYPES.include?(style))
-        #   type = style
-        # end
+        if type.nil? || (type == 'n' && DATE_TYPES.include?(style))
+          type = style
+        end
 
-        # case type
+        case type
 
-        # ##
-        # # There are few built-in types
-        # ##
+        ##
+        # There are few built-in types
+        ##
 
-        # when 's' # shared string
-        #   options[:shared_strings][value.to_i]
-        # when 'n' # number
-        #   value.to_f
-        # when 'b'
-        #   value.to_i == 1
-        # when 'str'
-        #   unescape_string(value)
-        # when 'inlineStr'
-        #   unescape_string(value)
+        when 's' # shared string
+          options[:shared_strings][value.to_i]
+        when 'n' # number
+          value.to_f
+        when 'b'
+          value.to_i == 1
+        when 'str'
+          unescape_string(value)
+        when 'inlineStr'
+          unescape_string(value)
 
-        # ##
-        # # Type can also be determined by a style,
-        # # detected earlier and cast here by its standardized symbol
-        # ##
+        ##
+        # Type can also be determined by a style,
+        # detected earlier and cast here by its standardized symbol
+        ##
 
-        # when :string
-        #   value
-        # when :unsupported
-        #   convert_unknown(value)
-        # when :fixnum
-        #   value.to_i
-        # when :float, :percentage
-        #   value.to_f
-        # when :date
-        #   convert_date(value, options)
-        # when :time, :date_time
-        #   convert_datetime(value, options)
-        # when :bignum
-        #   convert_bignum(value)
+        when :string
+          value
+        when :unsupported
+          convert_unknown(value)
+        when :fixnum
+          value.to_i
+        when :float, :percentage
+          value.to_f
+        when :date
+          convert_date(value, options)
+        when :time, :date_time
+          convert_datetime(value, options)
+        when :bignum
+          convert_bignum(value)
 
-        # ## Nothing matched
-        # else
-        #   convert_unknown(value)
-        # end
+        ## Nothing matched
+        else
+          convert_unknown(value)
+        end
       end
       
       def self.convert_unknown(value)
