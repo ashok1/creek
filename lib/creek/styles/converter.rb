@@ -45,7 +45,7 @@ module Creek
         when 's' # shared string
           options[:shared_strings][value.to_i]
         when 'n' # number
-          value.to_f # Fork Change: Removed to_f so string is returned
+          value # Fork Change: Removed to_f so string is returned
         when 'b'
           value.to_i == 1
         when 'str'
@@ -63,7 +63,7 @@ module Creek
         when :unsupported
           convert_unknown(value)
         when :fixnum
-          value.to_i
+          value # Fork Change: Removed to_i so string is returned
         when :float, :percentage
           value # Fork Change: Removed to_f so string is returned
         when :date
@@ -84,7 +84,7 @@ module Creek
           if value.nil? or value.empty?
             return value
           elsif value.to_i.to_s == value.to_s
-            return value.to_i
+            return value # Fork Change: Removed to_i so string is returned
           elsif value.to_f.to_s == value.to_s
             return value     # Fork Change: Removed to_f so string is returned
           else
