@@ -35,7 +35,8 @@ module Creek
         if type.nil? || (type == 'n' && DATE_TYPES.include?(style))
           type = style
         end
-
+        puts "Start"
+        puts value
         case type
 
         ##
@@ -44,13 +45,19 @@ module Creek
 
         when 's' # shared string
           options[:shared_strings][value.to_i]
+          puts "Shared strings"
+          
         when 'n' # number
+          puts "Number"
           value # Fork Change: Removed to_f so string is returned
         when 'b'
+          puts "Integer"
           value.to_i == 1
         when 'str'
+          puts "Str"
           unescape_string(value)
         when 'inlineStr'
+          puts "Inline Str"
           unescape_string(value)
 
         ##
@@ -59,22 +66,30 @@ module Creek
         ##
 
         when :string
+          puts "String ssss"
           value
         when :unsupported
+          puts "unsupported"
           convert_unknown(value)
         when :fixnum
+          puts "fixnum"
           value # Fork Change: Removed to_i so string is returned
         when :float, :percentage
+          puts "float/percentage"
           value # Fork Change: Removed to_f so string is returned
         when :date
+          puts "date"
           convert_date(value, options)
         when :time, :date_time
+          puts "time"
           convert_datetime(value, options)
         when :bignum
+          puts "bignumfff"
           convert_bignum(value)
 
         ## Nothing matched
         else
+          puts "Unkkkkskdsds"
           convert_unknown(value)
         end
       end
