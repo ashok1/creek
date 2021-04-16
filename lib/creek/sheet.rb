@@ -133,6 +133,8 @@ module Creek
     end
 
     def convert(value, type, style_idx)
+
+      return "Text"
       style = @book.style_types[style_idx.to_i]
       Creek::Styles::Converter.call(value, type, style, converter_options)
     end

@@ -45,7 +45,7 @@ module Creek
         when 's' # shared string
           options[:shared_strings][value.to_i]
         when 'n' # number
-          value   # Fork Change: Removed to_f so string is returned
+          value.to_f # Fork Change: Removed to_f so string is returned
         when 'b'
           value.to_i == 1
         when 'str'
