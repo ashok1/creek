@@ -122,6 +122,7 @@ module Creek
                 cell           = node.attributes['r']
               elsif %w[v t].include?(node.name) && node.node_type == opener
                 unless cell.nil?
+                  binding.pry
                   node.read
                   cells[cell] = convert(node.value, cell_type, cell_style_idx)
                 end
