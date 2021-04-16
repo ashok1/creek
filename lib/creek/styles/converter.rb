@@ -35,6 +35,7 @@ module Creek
         if type.nil? || (type == 'n' && DATE_TYPES.include?(style))
           type = style
         end
+        binding.pry
         puts "Start"
         puts value
         case type
