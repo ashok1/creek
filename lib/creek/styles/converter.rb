@@ -30,9 +30,6 @@ module Creek
       DATE_TYPES = [:date, :time, :date_time].to_set
       def self.call(value, type, style, options = {})
         return nil if value.nil? || value.empty?
-        # Always return string
-
-        return value
         
         # Sometimes the type is dictated by the style alone
         if type.nil? || (type == 'n' && DATE_TYPES.include?(style))
